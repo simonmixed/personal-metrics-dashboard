@@ -206,7 +206,7 @@ const SleepMetric = ({ type }) => {
         <div
           className="average-line"
           style={{
-            bottom: `${maxValue > 0 ? ((averageValue / maxValue) * 160) : 0}px`
+            bottom: `${maxValue > 0 ? ((averageValue / maxValue) * 90) : 0}px`
           }}
         />
       </div>

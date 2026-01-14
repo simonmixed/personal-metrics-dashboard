@@ -21,25 +21,25 @@ body {
 .dashboard-container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 16px;
 }
 
 .dashboard-header {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .dashboard-header h1 {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 700;
   color: #1a1a1a;
   margin: 0;
-  padding: 20px 0;
+  padding: 12px 0;
 }
 
 .metrics-grid {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .step-tracker-wrapper {
@@ -49,19 +49,28 @@ body {
 .sleep-metrics-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 12px;
 }
 
 @media (max-width: 768px) {
   .dashboard-container {
-    padding: 16px;
+    padding: 12px;
   }
 
   .dashboard-header h1 {
-    font-size: 24px;
+    font-size: 20px;
+    padding: 8px 0;
+  }
+
+  .dashboard-header {
+    margin-bottom: 12px;
+  }
+
+  .metrics-grid {
+    gap: 10px;
   }
 
   .sleep-metrics-row {
-    grid-template-columns: 1fr;
+    gap: 10px;
   }
 }
