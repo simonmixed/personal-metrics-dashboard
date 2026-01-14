@@ -142,8 +142,8 @@ const SleepMetric = ({ type }) => {
     );
   }
 
-  // Show message if no data
-  if (sleepData.length === 0 || todayValue === 0) {
+  // Show message only if there's absolutely no data at all
+  if (sleepData.length === 0) {
     return (
       <div className="metric-card">
         <div className="metric-header-row">
@@ -167,9 +167,9 @@ const SleepMetric = ({ type }) => {
 
       <div className="value-display">
         <span className="main-value">
-          {formatValue(todayValue)}
+          {todayValue === 0 ? '--' : formatValue(todayValue)}
         </span>
-        {percentageChange !== 0 && (
+        {percentageChange !== 0 && todayValue !== 0 && (
           <span className={`percentage-change ${
             isAsleep
               ? (percentageChange >= 0 ? 'positive' : 'negative')
