@@ -60,7 +60,7 @@ const SleepMetric = ({ type }) => {
         return `${year}-${month}-${day}`;
       };
 
-      for (let i = 6; i >= 0; i--) {
+      for (let i = 3; i >= 0; i--) {
         const targetDate = new Date(now);
         targetDate.setDate(now.getDate() - i);
         const dateStr = getLocalDateString(targetDate);
@@ -79,10 +79,10 @@ const SleepMetric = ({ type }) => {
         }
       }
 
-      console.log('Processed last 7 days:', last7Days);
+      console.log('Processed last 4 days:', last7Days);
       setSleepData(last7Days);
 
-      // Calculate average for last 7 days
+      // Calculate average for last 4 days
       const validDays = last7Days.filter(d => d.value > 0);
       if (validDays.length > 0) {
         const total = validDays.reduce((sum, d) => sum + d.value, 0);

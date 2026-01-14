@@ -14,10 +14,11 @@ const StepTracker = () => {
     }
     return 0;
   });
+  const [animatedMiles, setAnimatedMiles] = useState(0);
   const [showKeypad, setShowKeypad] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const goalMiles = 10;
-  const percentage = Math.min((miles / goalMiles) * 100, 100);
+  const percentage = Math.min((animatedMiles / goalMiles) * 100, 100);
 
   // Save miles to localStorage whenever it changes
   useEffect(() => {
@@ -26,6 +27,26 @@ const StepTracker = () => {
       miles,
       date: today
     }));
+  }, [miles]);
+
+  // Animate miles value on mount and when miles changes
+  useEffect(() => {
+    const duration = 1000; // 1 second animation
+    const steps = 60;
+    const increment = (miles - animatedMiles) / steps;
+    let currentStep = 0;
+
+    const timer = setInterval(() => {
+      currentStep++;
+      if (currentStep >= steps) {
+        setAnimatedMiles(miles);
+        clearInterval(timer);
+      } else {
+        setAnimatedMiles(prev => prev + increment);
+      }
+    }, duration / steps);
+
+    return () => clearInterval(timer);
   }, [miles]);
 
   // Number of segments in the arc (matching reference image)
@@ -113,7 +134,7 @@ const StepTracker = () => {
 
           <div className="gauge-center-content">
             <div className="gauge-value">
-              <span className="miles-value">{formatMiles(miles)}</span>
+              <span className="miles-value">{formatMiles(animatedMiles)}</span>
             </div>
             <span className="gauge-subtitle">miles</span>
           </div>
